@@ -62,11 +62,10 @@ def list_network_pkls(result_dir, run_id_or_run_dir, include_final=True):
 
 def locate_latest_pkl(result_dir):
     allpickles = sorted(glob.glob(os.path.join(result_dir, "0*", "network-*.pkl")))
-    print(allpickles)
     try:
         latest_pickle = allpickles[-1]
     except:
-        raise RuntimeError("localte_latest_pkl") from error
+        raise RuntimeError("localte_latest_pkl")
     resume_run_id = os.path.basename(os.path.dirname(latest_pickle))
     RE_KIMG = re.compile("network-snapshot-(\d+).pkl")
     kimg = int(RE_KIMG.match(os.path.basename(latest_pickle)).group(1))
